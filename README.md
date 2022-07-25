@@ -1,8 +1,8 @@
-# Import / export modules in JS.
+... still on progress ...
 
-## The today exercice's aim is deal with the import / export features in JS.
+# PROGAME EVENT for video games fans !
 
-## In this repo you will find a very simple script using import / export.
+## The today exercice's aim is to create a Simple Page Application for a fictive video game event, through the API RAWG.
 
-#### How to use this repo ?
-    - Clone this repo and open index.html with your web browser.
+#### How to use this repo ? coming soon ...
+    <!-- - Clone this repo and open index.html with your web browser. -->
