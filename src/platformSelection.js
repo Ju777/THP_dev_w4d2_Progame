@@ -63,6 +63,8 @@ const platformSelection = (argument = '') => {
           // console.log(platform.name);
           if(platform.name === platformName) {
             // console.log(platform.id);
+            const selectInput = document.getElementById('select-input');
+            selectInput.value = 'Platform ?';
             PageList('', 9, platform.id)
           }
         });
