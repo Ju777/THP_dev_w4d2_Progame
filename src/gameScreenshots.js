@@ -26,7 +26,7 @@ const gameScreenshots = (gameData) => {
             .then((response) => response.json())
             .then((responseData) => {
               // Log : juste pour avoir toutes les propriétés de l'objet responseData
-              console.log(responseData.results);
+              // console.log('fetchScreenshots', responseData.results);
               displayScreenshots(responseData.results);
             });
         };
@@ -39,7 +39,7 @@ const gameScreenshots = (gameData) => {
           <section class="page-detail">
             <div class="article">
               <h1 class="title"></h1>
-              <p class="release-date">Release date : <span></span></p>
+              <p class="release-date"><span></span></p>
               <p class="description"></p>
             </div>
           </section>

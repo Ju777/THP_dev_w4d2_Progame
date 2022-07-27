@@ -18,7 +18,7 @@ $mobile-width: 800px;
 
 // h1 style
 $h1-color : rgb(255, 255, 255);
-$h1-size : 2.5rem;
+$h1-size : 3rem;
 $h1-family : 'Oswald';
 $h1-weigth : 600;
 @mixin h1-style {
@@ -26,6 +26,18 @@ $h1-weigth : 600;
     font-family : $h1-family;
     font-weight : $h1-weigth;
     color : $h1-color;
+}
+
+// h2 style
+$h2-color : rgb(255, 0, 0);
+$h2-size : 2rem;
+$h2-family : 'Oswald';
+$h2-weigth : 500;
+@mixin h2-style {
+    font-size : $h2-size;
+    font-family : $h2-family;
+    font-weight : $h2-weigth;
+    color : $h2-color;
 }
 
 // p style
@@ -42,5 +54,27 @@ $p1-weigth : 400;
 
 //box-shadow
 @mixin box-shadow-style {
-    box-shadow: 0px 0px 5px rgb(255, 255, 255);
+    box-shadow: 0px 0px 10px rgb(255, 115, 0, 0.5);
+}
+
+// div
+$div-vertical-margin: 10px;
+$padding : 15px;
+
+// buttons style
+$background-color : rgb(255, 51, 51);
+$border-radius : 0;
+$color: rgb(0, 0, 0);
+$font-family: 'Oswald';
+$font-size: 1.2rem;
+$width: 100%;
+$border: none;
+@mixin buttons-style {
+    background-color : $background-color;
+    border-radius : $border-radius;
+    color: $color;
+    font-family : $font-family;
+    font-size : $font-size;
+    width: $width;
+    border: $border;
 }

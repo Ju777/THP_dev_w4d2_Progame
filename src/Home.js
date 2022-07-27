@@ -1,10 +1,11 @@
 import { PageList } from "./PageList";
 import { platformSelection } from "./platformSelection";
 import { showMore } from "./showMore";
-export { Home };
+export { Home, getInput };
 
 const Home = (argument = '') => {
   // console.log("On est dans Home");
+
 
   // Capture d'une saisie de l'utilisateur
   getInput();
@@ -36,3 +37,4 @@ const getInput = () => {
     searchInput.value = '';
   });
 }
+

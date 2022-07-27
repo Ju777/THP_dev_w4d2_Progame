@@ -1,3 +1,5 @@
+import { PageList } from './PageList';
+
 export { gameDetails };
 
 const gameDetails = (gameData) => {
@@ -12,14 +14,9 @@ const gameDetails = (gameData) => {
 
     // Récupération des données à afficher
     const descriptionTexts = splitDescriptionText(gameData);    
-    const developers = getDeveloppers(gameData);
-    const platforms = getPlatforms(gameData);
-    const publishers = getPublishers(gameData);
-    const genres = getGenres(gameData);
-    const tags = getTags(gameData);
 
     // Affichage des données récupérées
-    finalDisplay(gameData, gameDetailsContainer, descriptionTexts, developers, platforms, publishers, genres, tags); 
+    finalDisplay(gameData, gameDetailsContainer, descriptionTexts); 
 };
 
 const splitDescriptionText = (gameData) => {
@@ -62,72 +59,23 @@ const splitDescriptionText = (gameData) => {
     return descriptionTexts;
 }
 
-const getDeveloppers = (gameData) => {
-    let developers = '';
-
-    for(let i = 0 ; i < gameData.developers.length ; i++) {
-        developers += gameData.developers[i].name + ' ';
-    }
-
-    return developers;
-}
-
-const getPlatforms = (gameData) => {
-    let platforms = '';
-
-    for(let i = 0 ; i < gameData.parent_platforms.length ; i++) {
-        platforms += gameData.parent_platforms[i].platform.name + ' ';
-    }
-
-    return platforms;
-}
-
-const getPublishers = (gameData) => {
-    let publishers = '';
-
-    for(let i = 0 ; i < gameData.publishers.length ; i++) {
-        publishers += gameData.publishers[i].name + ' ';
-    }
-
-    return publishers;
-}
-
-const getGenres = (gameData) => {
-    let genres = '';
-
-    for(let i = 0 ; i < gameData.genres.length ; i++) {
-        genres += gameData.genres[i].name + ' ';
-    }
-
-    return genres;
-}
-
-const getTags = (gameData) => {
-    let tags = '';
-
-    for(let i = 0 ; i < gameData.tags.length ; i++) {
-        tags += gameData.tags[i].name + ' ';
-    }
-
-    return tags;
-}
-
-const finalDisplay = (gameData, gameDetailsContainer, descriptionTexts, developers, platforms, publishers, genres, tags) => {
+const finalDisplay = (gameData, gameDetailsContainer, descriptionTexts) => {
     gameDetailsContainer.innerHTML = `
     <div id="game-image-container">
-        #game-image-container<br/>
-        <img src="${gameData.background_image}" alt="image of the game" class="game-image"/>
-        <a href="${gameData.website}"><button id="check-website-button">check website</button></a>
+        <div id="game-website-button-container" class="game-website-button-container"><a href="${gameData.website}" target="blank"><button id="game-website-button">Game website</button></a></div>
+        
+        <div><img src="${gameData.background_image}" alt="image of the game" class="game-image"/></div>
+        
     </div>
 
 
     <div id="title-and-vote-container">
         <div id="game-title-container">
-            <h1>${gameData.name}</h1><br/>
+            <h1>${gameData.name}</h1>
             <p>${descriptionTexts.short}</p>
         </div>
         <div id="vote-container">
-           ${gameData.rating} / 5 - ${gameData.ratings_count} votes
+           ${gameData.rating} / 5<br />${gameData.ratings_count} votes
         </div>
     </div>
 
@@ -142,34 +90,42 @@ const finalDisplay = (gameData, gameDetailsContainer, descriptionTexts, develope
     </div>
 
     <div id="release-container">
+
         <div id="release-date-container">
             <p><strong>Release date</strong><br/>
             ${gameData.released}</p>
         </div>
+
         <div id="developer-container">
-            <p><strong>Developer</strong><br/>
-            ${developers}</p>
+            <strong>Developer</strong><br/>
+            <div id="developers-list-container"></div>
+  
         </div>
+
         <div id="platforms-container">
-        <p><strong>Platforms</strong><br/>
-        ${platforms}</p>
+            <strong>Platforms</strong><br/>
+            <div id="platforms-list-container"></div>
         </div>
+        
         <div id="publiser-container">
-        <p><strong>Publisher</strong><br/>
-        ${publishers}</p>
+            <strong>Publisher</strong><br/>
+            <div id="publishers-list-container"></div>
         </div>
+        
     </div>
 
     <div id="genre-and-tags-container">
+
         <div id="genre-container">
-        <p><strong>Genre</strong><br/>
-        ${genres}</p>
+          <strong>Genre</strong><br/>
+          <div id="genres-list-container"></div>
         </div>
 
         <div id="tags-container">
-            <p><strong>Tags</strong><br/>
-            ${tags}</p>
+            <strong>Tags</strong><br/>
+            <div id="tags-list-container"></div>
         </div>
+
     </div>
 
     <div id="buy-container">
@@ -197,5 +153,168 @@ const finalDisplay = (gameData, gameDetailsContainer, descriptionTexts, develope
         <h2>SIMILAR GAMES</h2>
         <p>Accès restreint par l'API on dirait ...</p>
     </div>  
-`;
+    `;
+
+    fetchPlatforms(gameData, 'https://api.rawg.io/api/platforms/lists/parents'); // => se finit par l'appel de displayPlatforms
+    displayDevelopers(gameData);
+    displayPublishers(gameData);
+    displayGenres(gameData);
+    displayTags(gameData);
+}
+
+const fetchPlatforms = (gameData, url) => {
+    // Log de vérif
+    // console.log('On est dans fetchPlatforms :\n', "url => ", url, "\n", "argument => ", argument);
+       fetch(`${url}?ordering=name&key=${process.env.RAWG_API_KEY}`)
+      .then((response) => response.json())
+      .then((responseData) => {
+        // Log : juste pour avoir toutes les propriétés de l'objet responseData
+        console.log('fetchPlatforms', responseData.results);
+        let allPlatforms = responseData.results;
+        displayPlatforms(gameData, allPlatforms);
+      });
+  };
+
+const displayPlatforms = (gameData, allPlatforms) => {
+    const platformsListContainer = document.getElementById('platforms-list-container');
+    for(let i = 0 ; i < gameData.parent_platforms.length ; i++) {
+        let spanDevLink = document.createElement('span');
+        platformsListContainer.appendChild(spanDevLink);
+        let platform = gameData.parent_platforms[i].platform.name;
+
+        // Affichage du logo correspondant à la plateforme
+        if (platform === 'PC') {  spanDevLink.innerHTML = `<a><img src="./src/assets/images/logos/windows.svg" /></a> `; }
+        if (platform === 'PlayStation') {  spanDevLink.innerHTML = `<a><img src="./src/assets/images/logos/ps4.svg" /></a> `; }
+        if (platform === 'Xbox') {  spanDevLink.innerHTML = `<a><img src="./src/assets/images/logos/xbox.svg" /></a> `; }
+        if (platform === 'iOs' || platform === 'Android') {  spanDevLink.innerHTML = `<a><img src="./src/assets/images/logos/mobile.svg" /></a> `; }
+        if (platform === 'Linux') {  spanDevLink.innerHTML = `<a><img src="./src/assets/images/logos/linux.svg" /></a> `; }
+        if (platform === 'Nintendo') {  spanDevLink.innerHTML = `<a><img src="./src/assets/images/logos/switch.svg" /></a> `; }
+
+        spanDevLink.addEventListener('mouseover', () => {
+            spanDevLink.style.cursor = "pointer";
+        });
+
+        spanDevLink.addEventListener('click', () => {
+            console.log('click !');
+
+            // Cacher les éléments de pageDetail pour laisser place à la liste de jeux de PageList
+            const gameDetailsContainer = document.getElementById('game-details-container');
+            gameDetailsContainer.style.display = 'none';
+            // Afficher la structure de PageList, qui sera rempli avec les datas fetchées par PageList()
+            const informationContainer = document.getElementById('information-container');
+            informationContainer.style.display = "block";
+
+            // La requete pour les plateformes ne fonctionne pas par la slug mais par l'id. Il nous faut donc l'id correspondant à la plateforme sélectionnée.
+            for(let i = 0 ; i < allPlatforms.length ; i ++) {
+                if(allPlatforms[i].name === platform) { 
+                    console.log(allPlatforms[i].name);
+                    PageList('', 9, allPlatforms[i].id);
+                }
+            }
+        });
+    }
+}
+
+const displayDevelopers = (gameData) => {
+    const developersListContainer = document.getElementById('developers-list-container');
+    for(let i = 0 ; i < gameData.developers.length ; i++) {
+        let spanDevLink = document.createElement('span');
+        developersListContainer.appendChild(spanDevLink);
+        spanDevLink.innerHTML = `<a>${gameData.developers[i].name}</a><br/>`;
+
+        spanDevLink.addEventListener('mouseover', () => {
+            spanDevLink.style.cursor = "pointer";
+        });
+
+        spanDevLink.addEventListener('click', () => {
+            console.log('click !');
+
+            // Cacher les éléments de pageDetail pour laisser place à la liste de jeux de PageList
+            const gameDetailsContainer = document.getElementById('game-details-container');
+            gameDetailsContainer.style.display = 'none';
+            // Afficher la structure de PageList, qui sera rempli avec les datas fetchées par PageList()
+            const informationContainer = document.getElementById('information-container');
+            informationContainer.style.display = "block";
+
+            PageList('', 9, '', gameData.developers[i].slug);
+        });
+    }
+}
+
+const displayPublishers = (gameData) => {
+    const publishersListContainer = document.getElementById('publishers-list-container');
+    for(let i = 0 ; i < gameData.publishers.length ; i++) {
+        let spanDevLink = document.createElement('span');
+        publishersListContainer.appendChild(spanDevLink);
+        spanDevLink.innerHTML = `<a>${gameData.publishers[i].name}</a><br/>`;
+
+        spanDevLink.addEventListener('mouseover', () => {
+            spanDevLink.style.cursor = "pointer";
+        });
+
+        spanDevLink.addEventListener('click', () => {
+            console.log('click !');
+
+            // Cacher les éléments de pageDetail pour laisser place à la liste de jeux de PageList
+            const gameDetailsContainer = document.getElementById('game-details-container');
+            gameDetailsContainer.style.display = 'none';
+            // Afficher la structure de PageList, qui sera rempli avec les datas fetchées par PageList()
+            const informationContainer = document.getElementById('information-container');
+            informationContainer.style.display = "block";
+
+            PageList('', 9, '', '', gameData.publishers[i].slug);
+        });
+    }
+}
+
+const displayGenres = (gameData) => {
+    const genresListContainer = document.getElementById('genres-list-container');
+    for(let i = 0 ; i < gameData.genres.length ; i++) {
+        let spanDevLink = document.createElement('span');
+        genresListContainer.appendChild(spanDevLink);
+        spanDevLink.innerHTML = `<a>${gameData.genres[i].name}</a> `;
+
+        spanDevLink.addEventListener('mouseover', () => {
+            spanDevLink.style.cursor = "pointer";
+        });
+
+        spanDevLink.addEventListener('click', () => {
+            console.log('click !');
+
+            // Cacher les éléments de pageDetail pour laisser place à la liste de jeux de PageList
+            const gameDetailsContainer = document.getElementById('game-details-container');
+            gameDetailsContainer.style.display = 'none';
+            // Afficher la structure de PageList, qui sera rempli avec les datas fetchées par PageList()
+            const informationContainer = document.getElementById('information-container');
+            informationContainer.style.display = "block";
+
+            PageList('', 9, '', '', '', gameData.genres[i].slug);
+        });
+    }
+}
+
+const displayTags = (gameData) => {
+    const tagsListContainer = document.getElementById('tags-list-container');
+    for(let i = 0 ; i < gameData.tags.length ; i++) {
+        let spanDevLink = document.createElement('span');
+        tagsListContainer.appendChild(spanDevLink);
+        spanDevLink.innerHTML = `<a>${gameData.tags[i].name.toLowerCase()}</a> `;
+
+        spanDevLink.addEventListener('mouseover', () => {
+            spanDevLink.style.cursor = "pointer";
+        });
+
+        spanDevLink.addEventListener('click', () => {
+            console.log('click !');
+
+            // Cacher les éléments de pageDetail pour laisser place à la liste de jeux de PageList
+            const gameDetailsContainer = document.getElementById('game-details-container');
+            gameDetailsContainer.style.display = 'none';
+            // Afficher la structure de PageList, qui sera rempli avec les datas fetchées par PageList()
+            const informationContainer = document.getElementById('information-container');
+            informationContainer.style.display = "block";
+
+            PageList('', 9, '', '', '', '', gameData.tags[i].slug);
+        });
+    }
 }

@@ -36,7 +36,7 @@ const gameYoutube = (gameData) => {
           <section class="page-detail">
             <div class="article">
               <h1 class="title"></h1>
-              <p class="release-date">Release date : <span></span></p>
+              <p class="release-date"><span></span></p>
               <p class="description"></p>
             </div>
           </section>

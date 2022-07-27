@@ -12,6 +12,11 @@ import { similarGames } from './similarGames';
 export { PageDetail };
 
 const PageDetail = (argument) => {
+    // document.documentElement.scrollTop = 0;
+    
+
+
+
     const preparePage = () => {
       const cleanedArgument = argument.trim().replace(/\s+/g, "-");
   
@@ -44,7 +49,7 @@ const PageDetail = (argument) => {
         <section class="page-detail">
           <div class="article">
             <h1 class="title"></h1>
-            <p class="release-date">Release date : <span></span></p>
+            <p class="release-date"><span></span></p>
             <p class="description"></p>
           </div>
         </section>
@@ -54,4 +59,14 @@ const PageDetail = (argument) => {
     };
   
     render();
+    backButtonBehavior();
   };
+
+  const backButtonBehavior = () => {
+    const backButtonContainer = document.getElementById('back-to-search-button-container');
+    backButtonContainer.style.display = 'block';
+
+    backButtonContainer.addEventListener('click', () => {
+      backButtonContainer.style.display = 'none';
+    });
+  }
