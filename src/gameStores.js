@@ -8,29 +8,22 @@ const gameStores = (gameData) => {
     const preparePage = () => {
         // const cleanedArgument = argument.trim().replace(/\s+/g, "-"); ORIGINAL EN ATTENTE
         const cleanedArgument = gameData.id;
-        const displayStores = (responseData) => {
-            // console.log(responseData)
-            const buyContainer = document.getElementById('buy-container');
-            for(let i = 0 ; i< responseData.length ; i++) {
-                let span = document.createElement('span');
-                buyContainer.appendChild(span);
-                span.innerHTML = `<a href="${responseData[i].url}">link ${i}</a><br/>`;
-            }
-        };
     
-        const fetchStores = (url, argument) => {
+        const fetchGameStores = (url, argument) => {
           // Log de vérif
           console.log('On est dans gameStores :\n', "url => ", url, "\n", "argument => ", argument);
              fetch(`${url}/${argument}/stores?key=${process.env.RAWG_API_KEY}`)
             .then((response) => response.json())
             .then((responseData) => {
-              // Log : juste pour avoir toutes les propriétés de l'objet responseData
-              console.log(responseData.results);
-              displayStores(responseData.results);
+              const gameStores = responseData.results;
+              // console.log('fetchGameStores', gameStores);
+              fetchStoresGeneralList(gameStores); // gameStores et ici passé en paramètre pour l'utiliser ailleurs. Sinon je n'arrive pas à appeler cette variable (!?)
+
+              
             });
         };
     
-        fetchStores('https://api.rawg.io/api/games', cleanedArgument);
+        fetchGameStores('https://api.rawg.io/api/games', cleanedArgument);
       };
     
       const render = () => {
@@ -48,4 +41,29 @@ const gameStores = (gameData) => {
       };
     
       render();
+}
+
+const fetchStoresGeneralList = (gameStores) => {
+   fetch(`https://api.rawg.io/api/stores?key=${process.env.RAWG_API_KEY}`)
+    .then((response) => response.json())
+    .then((responseData) => {
+      // Log : juste pour avoir toutes les propriétés de l'objet responseData
+      const storesGeneralList = responseData.results;
+      // console.log('fetchStoresGeneralList', storesGeneralList, gameStores);
+      displayStoresLinks(gameStores, storesGeneralList);
+    });
+}
+
+const displayStoresLinks = (gameStores, storesGeneralList) => {
+  // console.log('On est dans displayStoresLinks');
+
+    const buyContainer = document.getElementById('buy-container');
+    for(let i = 0 ; i< gameStores.length ; i++) {
+        let span = document.createElement('span');
+        buyContainer.appendChild(span);
+        for(let j = 0 ; j < storesGeneralList.length ; j++) {
+          // console.log(gameStores[i].store_id + " / " + storesGeneralList[j].id);
+          if (gameStores[i].store_id === storesGeneralList[j].id) { span.innerHTML = `<a href="${gameStores[i].url}">${storesGeneralList[j].name}</a><br/>`; }
+        }
+    }
 }

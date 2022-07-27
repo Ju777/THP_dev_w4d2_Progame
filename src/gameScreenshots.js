@@ -6,12 +6,12 @@ const gameScreenshots = (gameData) => {
 
         const displayScreenshots = (responseData) => {
             // console.log(responseData)
-            const screenshotsContainer = document.getElementById('screenshots-container');
-            for(let i = 0 ; i < responseData.length ; i++) {
-              let divScreen = document.createElement('div');
-              divScreen.classList.add = 'one-screenshot-container';
-              screenshotsContainer.appendChild(divScreen);
-              divScreen.innerHTML = `
+            const screenshots = document.getElementById('screenshots');
+            for(let i = 0 ; i < 4 ; i++) {
+              const divOneScreenshot = document.createElement('div');
+              screenshots.appendChild(divOneScreenshot);
+              divOneScreenshot.classList.add = 'one-screenshot-container';
+              divOneScreenshot.innerHTML = `
                                       <img src="${responseData[i].image}" alt="screenshot of the game" class="screenshot"/>
                                     `;
             }
