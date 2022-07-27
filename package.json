@@ -1,10 +1,11 @@
 {
-  "name": "",
+  "name": "The Hyper Progame",
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev" : "webpack --env NODE_ENV=development --config webpack.config.js",
+    "dev": "webpack --env NODE_ENV=development --config webpack.config.js",
     "build": "webpack --env NODE_ENV=production --config webpack.config.js",
+    "clean": "rm -f dist/*",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

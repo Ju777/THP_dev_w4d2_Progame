@@ -1,19 +1,214 @@
+// ORIGINAL DE LA RESSOURCE
+article {
+    border : 5px solid rgb(0, 254, 123);
+    padding : 10px;
+}
+// FIN
+
 // Import all of Bootstrap's CSS
 @import "~bootstrap/scss/bootstrap";
 
-// $color-red: rgb(255, 0, 187);
+@import './variables';
 
-// p {
-//   color: $color-red;
-//   font-family: 'Big Noodles';
-//   font-size: 5rem;
-// }
+p {
+    @include p-style;
+}
 
-// body {
-//   background-image: url('../assets/images/test-image-montagne.jpg');
-// }
+h1 {
+    @include h1-style;
+}
 
-// @font-face {
-//   font-family: 'Big Noodles';
-//   src: url('../assets/fonts/big_noodle_titling.ttf');
-// }
+a, a:visited {
+	text-decoration: none;
+	position: relative;
+	color: #069;
+	
+	&:after {
+		content: '';
+		height: 3px;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 0%;
+		background: #069;
+		transition: 0.2s;
+	}
+
+	&:hover:after {
+		width: 100%;
+	}
+	
+	&.block {
+		display: block;
+		padding: 0.5em;
+		
+		&:hover {
+			background: #eee;
+		}
+	}
+}
+
+body{
+    background-color: rgb(40, 40, 40);
+    color: rgb(255, 255, 255);
+}
+
+div { // Temporaire
+    margin: 10px;
+}
+// FIN
+
+
+#main-container{
+    border : 5px solid rgb(34, 0, 255);
+    padding: 20px;
+}
+
+#information-container {
+    border : 5px solid rgb(0, 255, 76);
+}
+
+// Styles des informations sur home et pageList
+#top-container {
+    border : 5px solid red;
+    display: flex;
+    @include mobile { flex-direction: column;}
+}
+
+#welcome-container {
+    border : 5px solid rgb(0, 255, 255);
+}
+
+#select-container {
+    border : 5px solid rgb(255, 208, 0);
+}
+
+#all-cards-container {
+    border : 5px solid rgb(255, 0, 132);
+    display : grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.one-card-container {
+    border : 2px solid rgb(0, 115, 255);
+    max-width: 30vw;
+    max-height: 50vh;
+    display : grid;
+    grid-template-columns: 1fr;
+}
+
+.background-image-container {
+    
+    max-width: 30vw;
+    max-height: 30vh;
+}
+
+.image-in-card {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#showmore-button-container{
+    border : 5px solid rgb(153, 0, 255);
+}
+// FIN
+
+// Styles de pageDetail
+#game-details-container {
+    border : 5px solid rgb(64, 0, 255);
+}
+
+#game-image-container{
+    border : 5px solid rgb(153, 0, 255);
+    width: 100%;
+    position: relative;
+}
+
+.game-image{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#check-website-button{
+    position: absolute;
+    top: 80%;
+    left: 80%;
+}
+
+#game-details-container{
+    border : 5px solid rgb(47, 0, 255);
+  
+}
+
+#title-and-vote-container{
+    border : 5px solid rgb(0, 255, 183);
+    display: flex;
+}
+
+#game-title-container{
+    border : 5px dashed rgb(0, 0, 0);
+}
+
+#vote-container{
+    border : 5px dashed rgb(0, 0, 0);
+}
+
+#plot-container{
+    border : 5px solid rgb(212, 0, 255);
+}
+
+#gameplay-container{
+    border : 5px solid rgb(0, 0, 0);
+}
+
+#release-container{
+    border : 5px solid rgb(255, 94, 0);
+    display : grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+#genre-and-tags-container{
+    border : 5px solid rgb(255, 0, 0);
+    display : grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#genre-container{
+    border : 5px dashed rgb(255, 0, 0);
+}
+
+#tags-container{
+    border : 5px dashed rgb(255, 0, 0);
+}
+
+#buy-container{
+    border : 5px solid rgb(0, 0, 0);
+}
+
+#trailer-container{
+    border : 5px solid rgb(0, 0, 0);
+}
+
+#screenshots-container{
+    border : 5px solid rgb(0, 0, 0);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.one-screenshot-container{
+    max-width: 50vw;
+    max-height: 50vh;
+}
+
+.screenshot{
+    width: 100%;
+    height: 100%;
+}
+
+#youtube-container{
+    border : 5px solid rgb(0, 0, 0);
+}
+
+#similar-games-container{
+    border : 5px solid rgb(0, 0, 0);
+}

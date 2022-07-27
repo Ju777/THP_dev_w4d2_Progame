@@ -2,6 +2,11 @@
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/style/index.scss ***!
   \*************************************************************************************************************************************************************************************/
 @charset "UTF-8";
+article {
+  border: 5px solid rgb(0, 254, 123);
+  padding: 10px;
+}
+
 /*!
  * Bootstrap  v5.2.0 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
@@ -10760,4 +10765,213 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+@font-face {
+  font-family: "VarelaRound";
+  src: url(6b0ad79431843e696f58.ttf) format("woff");
+}
+@font-face {
+  font-family: "Oswald";
+  src: url(46d7853f0185f6bf0c93.ttf) format("woff");
+}
+p {
+  font-size: 1rem;
+  font-family: "VarelaRound";
+  font-weight: 400;
+  color: rgb(255, 255, 255);
+}
+
+h1, .h1 {
+  font-size: 2.5rem;
+  font-family: "Oswald";
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+}
+
+a, a:visited {
+  text-decoration: none;
+  position: relative;
+  color: #069;
+}
+a:after, a:visited:after {
+  content: "";
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  background: #069;
+  transition: 0.2s;
+}
+a:hover:after, a:visited:hover:after {
+  width: 100%;
+}
+a.block, a:visited.block {
+  display: block;
+  padding: 0.5em;
+}
+a.block:hover, a:visited.block:hover {
+  background: #eee;
+}
+
+body {
+  background-color: rgb(40, 40, 40);
+  color: rgb(255, 255, 255);
+}
+
+div {
+  margin: 10px;
+}
+
+#main-container {
+  border: 5px solid rgb(34, 0, 255);
+  padding: 20px;
+}
+
+#information-container {
+  border: 5px solid rgb(0, 255, 76);
+}
+
+#top-container {
+  border: 5px solid red;
+  display: flex;
+}
+@media (max-width: 800px) {
+  #top-container {
+    flex-direction: column;
+  }
+}
+
+#welcome-container {
+  border: 5px solid rgb(0, 255, 255);
+}
+
+#select-container {
+  border: 5px solid rgb(255, 208, 0);
+}
+
+#all-cards-container {
+  border: 5px solid rgb(255, 0, 132);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.one-card-container {
+  border: 2px solid rgb(0, 115, 255);
+  max-width: 30vw;
+  max-height: 50vh;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.background-image-container {
+  max-width: 30vw;
+  max-height: 30vh;
+}
+
+.image-in-card {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#showmore-button-container {
+  border: 5px solid rgb(153, 0, 255);
+}
+
+#game-details-container {
+  border: 5px solid rgb(64, 0, 255);
+}
+
+#game-image-container {
+  border: 5px solid rgb(153, 0, 255);
+  width: 100%;
+  position: relative;
+}
+
+.game-image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#check-website-button {
+  position: absolute;
+  top: 80%;
+  left: 80%;
+}
+
+#game-details-container {
+  border: 5px solid rgb(47, 0, 255);
+}
+
+#title-and-vote-container {
+  border: 5px solid rgb(0, 255, 183);
+  display: flex;
+}
+
+#game-title-container {
+  border: 5px dashed rgb(0, 0, 0);
+}
+
+#vote-container {
+  border: 5px dashed rgb(0, 0, 0);
+}
+
+#plot-container {
+  border: 5px solid rgb(212, 0, 255);
+}
+
+#gameplay-container {
+  border: 5px solid rgb(0, 0, 0);
+}
+
+#release-container {
+  border: 5px solid rgb(255, 94, 0);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+#genre-and-tags-container {
+  border: 5px solid rgb(255, 0, 0);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#genre-container {
+  border: 5px dashed rgb(255, 0, 0);
+}
+
+#tags-container {
+  border: 5px dashed rgb(255, 0, 0);
+}
+
+#buy-container {
+  border: 5px solid rgb(0, 0, 0);
+}
+
+#trailer-container {
+  border: 5px solid rgb(0, 0, 0);
+}
+
+#screenshots-container {
+  border: 5px solid rgb(0, 0, 0);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.one-screenshot-container {
+  max-width: 50vw;
+  max-height: 50vh;
+}
+
+.screenshot {
+  width: 100%;
+  height: 100%;
+}
+
+#youtube-container {
+  border: 5px solid rgb(0, 0, 0);
+}
+
+#similar-games-container {
+  border: 5px solid rgb(0, 0, 0);
 }

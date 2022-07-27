@@ -1,0 +1,42 @@
+// mobile style
+$mobile-width: 800px;
+@mixin mobile {
+    @media(max-width: $mobile-width) {
+        @content;
+    }
+}
+
+@font-face {
+    font-family: "VarelaRound";
+    src: url("../assets/fonts/VarelaRound-Regular.ttf") format("woff"),
+   }
+
+@font-face {
+    font-family: "Oswald";
+    src: url("../assets/fonts/Oswald-VariableFont_wght.ttf") format("woff"),
+}
+
+// h1 style
+$h1-color : rgb(255, 255, 255);
+$h1-size : 2.5rem;
+$h1-family : 'Oswald';
+$h1-weigth : 600;
+@mixin h1-style {
+    font-size : $h1-size;
+    font-family : $h1-family;
+    font-weight : $h1-weigth;
+    color : $h1-color;
+}
+
+// p style
+$p1-color : rgb(255, 255, 255);
+$p1-size : 1rem;
+$p1-family : 'VarelaRound';
+$p1-weigth : 400;   
+@mixin p-style {
+    font-size : $p1-size;
+    font-family : $p1-family;
+    font-weight : $p1-weigth;
+    color : $p1-color;       
+}
+

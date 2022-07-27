@@ -1,3 +1,10 @@
+import { gameDetails } from './gameDetails';
+import { gameStores } from './gameStores';
+import { gameTrailer } from './gameTrailer';
+import { gameScreenshots } from './gameScreenshots';
+import { gameYoutube } from './gameYoutube';
+import { similarGames } from './similarGames';
+
 // const PageDetail = (argument = '') => {
 //   console.log('Page Détail', argument);
 // }
@@ -8,18 +15,23 @@ const PageDetail = (argument) => {
     const preparePage = () => {
       const cleanedArgument = argument.trim().replace(/\s+/g, "-");
   
-      const displayGame = (gameData) => {
-        const { name, released, description } = gameData;
-        const articleDOM = document.querySelector(".page-detail .article");
-        articleDOM.querySelector("h1.title").innerHTML = name;
-        articleDOM.querySelector("p.release-date span").innerHTML = released;
-        articleDOM.querySelector("p.description").innerHTML = description;
+      const displayGame = (responseData) => {
+        gameDetails(responseData);
+        gameStores(responseData);
+        gameTrailer(responseData);
+        gameScreenshots(responseData);
+        gameYoutube(responseData);
+        similarGames(responseData);
       };
   
       const fetchGame = (url, argument) => {
+        // Log de vérif
+        console.log('On est dans PageDetail :\n', "url => ", url, "\n", "argument => ", argument);
         fetch(`${url}/${argument}?key=${process.env.RAWG_API_KEY}`)
           .then((response) => response.json())
           .then((responseData) => {
+            // Log : juste pour avoir toutes les propriétés de l'objet responseData
+            console.log(responseData);
             displayGame(responseData);
           });
       };
