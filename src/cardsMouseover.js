@@ -44,8 +44,8 @@ const cardsMouseover = (games) => {
                                         `;
 
                 const mouseoverContainer = document.getElementById('mouseover-container');
-                // console.log('mouseoverContainer', mouseoverContainer);
-                console.log('games[i].released', games[i].background_image);
+                // console.log('games[i].released', games[i].background_image);
+                
                 imageCardContainer.style.backgroundSize ="100% 100%";
                 imageCardContainer.style.backgroundRepeat = "no-repeat";
                 imageCardContainer.style.backgroundImage = `url(${games[i].background_image})`;
@@ -53,8 +53,6 @@ const cardsMouseover = (games) => {
                 imageCardContainer.style.backgroundBlendMode = "overlay";
                 imageCardContainer.style.borderRadius = "30px";
                 imageCardContainer.style.padding = "20px";
-                
-                // imageCardContainer.style.backgroundColor = 'red';
 
                 cardContainer.addEventListener('mouseleave', () => {
                     imageCardContainer.innerHTML = toKeep;

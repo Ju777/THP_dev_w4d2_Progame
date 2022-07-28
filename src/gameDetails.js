@@ -26,6 +26,7 @@ const splitDescriptionText = (gameData) => {
     // console.log('includes', rawDescriptionField.includes('<br />'));
 
     let splittedFields = '';
+    // Le critère de split est soit <br /> soit </p> s'il n'y a pas de <br />
     if (rawDescriptionField.includes('<br />')) {
         // console.log('includes', rawDescriptionField.includes('<br />'));
         splittedFields = rawDescriptionField.split('<br />');
@@ -43,9 +44,13 @@ const splitDescriptionText = (gameData) => {
 
     // plot sera la concaténation de tous les éléments entre les 2 précédents.
     let plot = '';
+    
     for(let i = 1 ; i < splittedFields.length -2 ; i++) {
         plot += splittedFields[i];
     }
+    if (shortDescription === '') { shortDescription = 'Data NA ... sorry ¯\\\_(ツ)_/¯ !'; }
+    if (plot === '') { plot = 'Data NA ... sorry ¯\\\_(ツ)_/¯ !'; }
+    if (gameplay === '') { gameplay = 'Data NA ... sorry ¯\\\_(ツ)_/¯ !'; }
 
     // console.log("texts", shortDescription, plot, gameplay);
 
@@ -169,7 +174,7 @@ const fetchPlatforms = (gameData, url) => {
       .then((response) => response.json())
       .then((responseData) => {
         // Log : juste pour avoir toutes les propriétés de l'objet responseData
-        console.log('fetchPlatforms', responseData.results);
+        // console.log('fetchPlatforms', responseData.results);
         let allPlatforms = responseData.results;
         displayPlatforms(gameData, allPlatforms);
       });
@@ -195,7 +200,7 @@ const displayPlatforms = (gameData, allPlatforms) => {
         });
 
         spanDevLink.addEventListener('click', () => {
-            console.log('click !');
+            // console.log('click !');
 
             // Cacher les éléments de pageDetail pour laisser place à la liste de jeux de PageList
             const gameDetailsContainer = document.getElementById('game-details-container');
@@ -207,7 +212,7 @@ const displayPlatforms = (gameData, allPlatforms) => {
             // La requete pour les plateformes ne fonctionne pas par la slug mais par l'id. Il nous faut donc l'id correspondant à la plateforme sélectionnée.
             for(let i = 0 ; i < allPlatforms.length ; i ++) {
                 if(allPlatforms[i].name === platform) { 
-                    console.log(allPlatforms[i].name);
+                    // console.log(allPlatforms[i].name);
                     PageList('', 9, allPlatforms[i].id);
                 }
             }
@@ -227,7 +232,7 @@ const displayDevelopers = (gameData) => {
         });
 
         spanDevLink.addEventListener('click', () => {
-            console.log('click !');
+            // console.log('click !');
 
             // Cacher les éléments de pageDetail pour laisser place à la liste de jeux de PageList
             const gameDetailsContainer = document.getElementById('game-details-container');
@@ -253,7 +258,7 @@ const displayPublishers = (gameData) => {
         });
 
         spanDevLink.addEventListener('click', () => {
-            console.log('click !');
+            // console.log('click !');
 
             // Cacher les éléments de pageDetail pour laisser place à la liste de jeux de PageList
             const gameDetailsContainer = document.getElementById('game-details-container');
@@ -279,7 +284,7 @@ const displayGenres = (gameData) => {
         });
 
         spanDevLink.addEventListener('click', () => {
-            console.log('click !');
+            // console.log('click !');
 
             // Cacher les éléments de pageDetail pour laisser place à la liste de jeux de PageList
             const gameDetailsContainer = document.getElementById('game-details-container');
@@ -305,7 +310,7 @@ const displayTags = (gameData) => {
         });
 
         spanDevLink.addEventListener('click', () => {
-            console.log('click !');
+            // console.log('click !');
 
             // Cacher les éléments de pageDetail pour laisser place à la liste de jeux de PageList
             const gameDetailsContainer = document.getElementById('game-details-container');

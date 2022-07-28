@@ -27,12 +27,12 @@ const PageDetail = (argument) => {
 
     const fetchGame = (url, argument) => {
       // Log de vérif
-      console.log('On est dans PageDetail :\n', "url => ", url, "\n", "argument => ", argument);
+      // console.log('On est dans PageDetail :\n', "url => ", url, "\n", "argument => ", argument);
       fetch(`${url}/${argument}?key=${process.env.RAWG_API_KEY}`)
         .then((response) => response.json())
         .then((responseData) => {
           // Log : juste pour avoir toutes les propriétés de l'objet responseData
-          console.log(responseData);
+          console.log('fetchGame', responseData);
           displayGame(responseData);
         });
     };

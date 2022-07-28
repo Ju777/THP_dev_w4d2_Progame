@@ -11,7 +11,7 @@ const gameStores = (gameData) => {
     
         const fetchGameStores = (url, argument) => {
           // Log de vérif
-          console.log('On est dans gameStores :\n', "url => ", url, "\n", "argument => ", argument);
+          // console.log('On est dans gameStores :\n', "url => ", url, "\n", "argument => ", argument);
              fetch(`${url}/${argument}/stores?key=${process.env.RAWG_API_KEY}`)
             .then((response) => response.json())
             .then((responseData) => {

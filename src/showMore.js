@@ -2,7 +2,7 @@ import { PageList } from "./PageList";
 export { showMore };
 
 const showMore = () => {
-    console.log("On est dans showMore");
+    // console.log("On est dans showMore");
     const showmoreButton = document.getElementById('showmore-button');
     showmoreButton.style.display = 'block';
     

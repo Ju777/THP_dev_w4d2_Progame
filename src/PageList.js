@@ -39,7 +39,7 @@ const PageList = (argument = '', listSizeFilter = 9, platformId = '', developer 
             .then((response) => response.json())
             .then((responseData) => {
               // Log : juste pour avoir toutes les propriétés de l'objet responseData
-              console.log('fetchPlatforms', responseData.results);
+              // console.log('fetchPlatforms', responseData.results);
               let allPlatforms = responseData.results;
               // displayPlatforms(gameData, allPlatforms);
               displayPlatformsLogos(games, allPlatforms);
@@ -55,13 +55,13 @@ const PageList = (argument = '', listSizeFilter = 9, platformId = '', developer 
 
       const fetchList = (url, argument) => {
         // Log de vérif
-        console.log('On est dans PageList :\n', "url => ", url, "\n", "argument => ", argument);
+        // console.log('On est dans PageList :\n', "url => ", url, "\n", "argument => ", argument);
 
         const finalURL = argument ? `${url}&search=${argument}` : url;
         fetch(finalURL)
           .then((response) => response.json())
           .then((responseData) => {
-            console.log('fetchList', responseData.results);
+            // console.log('fetchList', responseData.results);
             displayResults(responseData.results);
           });
       };

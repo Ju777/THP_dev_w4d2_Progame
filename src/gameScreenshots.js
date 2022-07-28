@@ -21,7 +21,7 @@ const gameScreenshots = (gameData) => {
     
         const fetchScreenshots = (url, argument) => {
           // Log de vérif
-          console.log('On est dans gameScreenshots :\n', "url => ", url, "\n", "argument => ", argument);
+          // console.log('On est dans gameScreenshots :\n', "url => ", url, "\n", "argument => ", argument);
              fetch(`${url}/${argument}/screenshots?key=${process.env.RAWG_API_KEY}`)
             .then((response) => response.json())
             .then((responseData) => {
