@@ -10848,7 +10848,7 @@ div {
 
 #back-to-search-button-container {
   position: fixed;
-  top: 5vh;
+  top: 80vh;
   right: 0vw;
   display: none;
   width: 10vw;
@@ -10922,8 +10922,7 @@ div {
 .card-container {
   display: grid;
   grid-template-columns: 1fr;
-  padding: 15px;
-  margin-bottom: 20px;
+  margin: 50px;
 }
 
 .game-image-container {
@@ -10940,6 +10939,8 @@ div {
 
 #mouseover-container {
   color: black;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 ul {

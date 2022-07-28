@@ -65,6 +65,12 @@ const backButtonBehavior = () => {
   const backButtonContainer = document.getElementById('back-to-search-button-container');
   backButtonContainer.style.display = 'block';
 
+  anime({
+    targets : backButtonContainer,
+    delay : 500,
+    translateY : '-75vh'
+  });
+
   backButtonContainer.addEventListener('click', () => {
     backButtonContainer.style.display = 'none';
   });

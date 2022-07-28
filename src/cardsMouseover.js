@@ -1,3 +1,5 @@
+import anime from 'animejs/lib/anime.es.js';
+
 export { cardsMouseover };
 
 
@@ -6,6 +8,7 @@ const cardsMouseover = (games) => {
     for(let i = 0 ; i < games.length ; i++) {
         const cardContainer = document.getElementById(`game-${games[i].id}-card`);
         const imageCardContainer = document.getElementById(`game-${games[i].id}-image-container`);
+        const imageCard = document.getElementById(`game-${games[i].id}-image`);
 
         // Sauvegarde du contenu actuel de la card, pour le ré-afficher après le mouseover.
         let toKeep = imageCardContainer.innerHTML;
@@ -27,38 +30,53 @@ const cardsMouseover = (games) => {
             }
             // console.log('publishersString', publishersString);
 
+
             // Exécuter le mouseover avec toutes les informations récupérées au dessus.
             cardContainer.addEventListener('mouseenter', () => {
-                // console.log("mouseover");
-                
-                imageCardContainer.innerHTML = `
-                                            <div id ="mouseover-container" class="mouseover-container">
-                                                <ul>
-                                                    <li>Release : ${games[i].released}</li>
-                                                    <li>Publisher : ${publishersString}</li>
-                                                    <li class="game-genre">Genre : ${gameGenres}</li>
-                                                    <li>Rating : ${games[i].rating} / 5 - ${games[i].ratings_count} votes</li>
-                                                </ul>
-                                            </div>
-                                            </a>
-                                        `;
 
-                const mouseoverContainer = document.getElementById('mouseover-container');
-                // console.log('games[i].released', games[i].background_image);
-                
-                imageCardContainer.style.backgroundSize ="100% 100%";
-                imageCardContainer.style.backgroundRepeat = "no-repeat";
-                imageCardContainer.style.backgroundImage = `url(${games[i].background_image})`;
-                imageCardContainer.style.backgroundColor = "rgba(255, 255, 255, 0.600)";
-                imageCardContainer.style.backgroundBlendMode = "overlay";
-                imageCardContainer.style.borderRadius = "30px";
-                imageCardContainer.style.padding = "20px";
-
-                cardContainer.addEventListener('mouseleave', () => {
-                    imageCardContainer.innerHTML = toKeep;
-                    imageCardContainer.style.padding = "0";
-                    
+                anime({
+                    targets: imageCard,
+                    keyframes: [
+                      {scale: 1.2},
+                      {rotate : 360,
+                        scale: 0},
+                    ],
+                    duration: 1500,
+                    easing: 'easeOutElastic(1, 1)',
+                    // loop: true
                 });
+
+                setTimeout( () => {
+                    console.log('overDisplay');
+                    imageCardContainer.innerHTML = `
+                                                <div id ="mouseover-container">
+                                                    <ul>
+                                                        <li>Release : ${games[i].released}</li>
+                                                        <li>Publisher : ${publishersString}</li>
+                                                        <li class="game-genre">Genre : ${gameGenres}</li>
+                                                        <li>Rating : ${games[i].rating} / 5 - ${games[i].ratings_count} votes</li>
+                                                    </ul>
+                                                </div>
+                                                </a>
+                                            `;
+
+                    imageCardContainer.style.backgroundSize ="100% 100%";
+                    imageCardContainer.style.backgroundRepeat = "no-repeat";
+                    imageCardContainer.style.backgroundImage = `url(${games[i].background_image})`;
+                    imageCardContainer.style.backgroundColor = "rgba(255, 255, 255, 0.600)";
+                    imageCardContainer.style.backgroundBlendMode = "overlay";
+                    imageCardContainer.style.borderRadius = "30px";
+                    imageCardContainer.style.padding = "20px";
+                
+
+                    cardContainer.addEventListener('mouseleave', () => {
+                        // imageCardContainer.innerHTML = toKeep;
+                        // imageCardContainer.style.padding = "0";
+                        
+                    });
+                 }, 1000);
+
+               
             });
         });
     }

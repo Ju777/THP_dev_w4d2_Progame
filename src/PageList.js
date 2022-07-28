@@ -14,7 +14,7 @@ const PageList = (argument = '', listSizeFilter = 9, platformId = '', developer 
             `<div id="game-${game.id}-card" class="card-container">
 
                 <div id="game-${game.id}-image-container" class="game-image-container">
-                  <img src="${game.background_image}" alt="video game image" class="image-in-card"/>
+                  <img id="game-${game.id}-image" src="${game.background_image}" alt="video game image" class="image-in-card"/>
                 </div>
 
                 <div class="game-name-container">

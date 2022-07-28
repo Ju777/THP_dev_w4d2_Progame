@@ -10,14 +10,15 @@ const gameTrailer = (gameData) => {
             // console.log('displayTrailer', responseData);
             let trailerContainer = document.getElementById('trailer-container');
             let trailerPlayer = document.getElementById('trailer-player');
-            let imageNoTrailer = document.createElement('img');
-            trailerContainer.appendChild(imageNoTrailer);
+            
 
             if (responseData.length === 0) {
-              // console.log("ca vaut 0");
+              console.log("Trailer => ca vaut 0");
               trailerPlayer.style.display = 'none';
-              //imageNoTrailer.setAttribute('src', "./assets/images/no-trailer-sorry-min.png");
-              imageNoTrailer.setAttribute('alt', 'Data NA ... sorry ¯\\\_(ツ)_/¯ ! ');              
+
+              let noTrailerText = document.createElement('p');
+              trailerContainer.appendChild(noTrailerText);
+              noTrailerText.innerHTML = 'Data NA ... sorry ¯\\\_(ツ)_/¯ ! ';              
             } else {
                     trailerPlayer.innerHTML = `<source src="${responseData[0].data["max"]}" type="video/mp4">
                                   Sorry, your browser doesn't support embedded videos.
