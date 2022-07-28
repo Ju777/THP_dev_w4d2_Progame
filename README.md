@@ -1,6 +1,4 @@
-... still on progress but works, you can try !
-
-# PROGAME EVENT for video games fans !
+# PROGAME ! The Event for video games fans !
 
 ## The today exercice's aim is to create a Simple Page Application for a fictive video game event, through the API RAWG.
 
