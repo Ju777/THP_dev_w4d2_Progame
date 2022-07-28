@@ -10866,6 +10866,11 @@ div {
 
 #welcome-container {
   padding: 15px;
+  width: 100%;
+}
+
+#welcome-title-container {
+  width: 15%;
 }
 
 #select-container {

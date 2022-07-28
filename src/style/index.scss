@@ -98,7 +98,13 @@ div { // Temporaire
 
 #welcome-container {
     // border : 5px solid rgb(0, 255, 255);
-    padding: $padding; 
+    padding: $padding;
+    width: 100%;
+}
+
+#welcome-title-container{
+    // border : 5px solid rgb(255, 0, 247);
+    width : 15%;
 }
 
 #select-container {

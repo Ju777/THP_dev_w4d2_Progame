@@ -4,6 +4,7 @@ import { gameTrailer } from './gameTrailer';
 import { gameScreenshots } from './gameScreenshots';
 import { gameYoutube } from './gameYoutube';
 import { similarGames } from './similarGames';
+import anime from 'animejs';
 
 // const PageDetail = (argument = '') => {
 //   console.log('Page Détail', argument);
@@ -13,6 +14,8 @@ export { PageDetail };
 
 const PageDetail = (argument) => {
   window.scrollTo(0, 0);
+
+
   const preparePage = () => {
     const cleanedArgument = argument.trim().replace(/\s+/g, "-");
 

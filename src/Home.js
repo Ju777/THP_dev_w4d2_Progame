@@ -1,8 +1,9 @@
 import { PageList } from "./PageList";
 import { platformSelection } from "./platformSelection";
 import { showMore } from "./showMore";
-export { Home, getInput };
+import anime from 'animejs/lib/anime.es.js';
 
+export { Home, getInput };
 const Home = (argument = '') => {
   // console.log("On est dans Home");
 
@@ -37,4 +38,13 @@ const getInput = () => {
     searchInput.value = '';
   });
 }
+
+// Animation on page opening
+const welcomeTitle = document.getElementById('welcome-title');
+anime({
+  targets : welcomeTitle,
+  delay : 1000,
+  rotate : 1080,
+  duration : 1000
+});
 
