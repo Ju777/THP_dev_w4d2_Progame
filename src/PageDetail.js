@@ -74,5 +74,7 @@ const backButtonBehavior = () => {
 
   backButtonContainer.addEventListener('click', () => {
     backButtonContainer.style.display = 'none';
+    const selectInput = document.getElementById('select-input');
+    selectInput.innerHTML = '<option class="option-tag">Platform ?</option>';
   });
 }

@@ -1,7 +1,7 @@
 import { PageList } from "./PageList";
 import { platformSelection } from "./platformSelection";
 import { showMore } from "./showMore";
-import anime from 'animejs/lib/anime.es.js';
+import anime from 'animejs/lib/anime.es';
 
 export { Home, getInput };
 const Home = (argument = '') => {
