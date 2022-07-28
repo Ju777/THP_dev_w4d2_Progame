@@ -16,7 +16,7 @@ const gameTrailer = (gameData) => {
             if (responseData.length === 0) {
               // console.log("ca vaut 0");
               trailerPlayer.style.display = 'none';
-              imageNoTrailer.setAttribute('src', "./assets/images/no-trailer-sorry-min.png");
+              //imageNoTrailer.setAttribute('src', "./assets/images/no-trailer-sorry-min.png");
               imageNoTrailer.setAttribute('alt', 'No trailer for this game ... sorry ¯\\\_(ツ)_/¯ ! ');              
             } else {
                     trailerPlayer.innerHTML = `<source src="${responseData[0].data["max"]}" type="video/mp4">

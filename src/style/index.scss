@@ -174,6 +174,19 @@ div { // Temporaire
     border-radius: 20px;
 }
 
+#mouseover-container {
+    // border : 5px solid rgb(153, 0, 255);
+    color : black;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    @include li-style
+}
+
 #showmore-button-container{
     // border : 5px solid rgb(153, 0, 255);
     padding: $padding; 

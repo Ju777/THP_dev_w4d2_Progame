@@ -12,61 +12,57 @@ import { similarGames } from './similarGames';
 export { PageDetail };
 
 const PageDetail = (argument) => {
-    // document.documentElement.scrollTop = 0;
-    
+  window.scrollTo(0, 0);
+  const preparePage = () => {
+    const cleanedArgument = argument.trim().replace(/\s+/g, "-");
 
-
-
-    const preparePage = () => {
-      const cleanedArgument = argument.trim().replace(/\s+/g, "-");
-  
-      const displayGame = (responseData) => {
-        gameDetails(responseData);
-        gameStores(responseData);
-        gameTrailer(responseData);
-        gameScreenshots(responseData);
-        gameYoutube(responseData);
-        similarGames(responseData);
-      };
-  
-      const fetchGame = (url, argument) => {
-        // Log de vérif
-        console.log('On est dans PageDetail :\n', "url => ", url, "\n", "argument => ", argument);
-        fetch(`${url}/${argument}?key=${process.env.RAWG_API_KEY}`)
-          .then((response) => response.json())
-          .then((responseData) => {
-            // Log : juste pour avoir toutes les propriétés de l'objet responseData
-            console.log(responseData);
-            displayGame(responseData);
-          });
-      };
-  
-      fetchGame('https://api.rawg.io/api/games', cleanedArgument);
+    const displayGame = (responseData) => {
+      gameDetails(responseData);
+      gameStores(responseData);
+      gameTrailer(responseData);
+      gameScreenshots(responseData);
+      gameYoutube(responseData);
+      similarGames(responseData);
     };
-  
-    const render = () => {
-      pageContent.innerHTML = `
-        <section class="page-detail">
-          <div class="article">
-            <h1 class="title"></h1>
-            <p class="release-date"><span></span></p>
-            <p class="description"></p>
-          </div>
-        </section>
-      `;
-  
-      preparePage();
+
+    const fetchGame = (url, argument) => {
+      // Log de vérif
+      console.log('On est dans PageDetail :\n', "url => ", url, "\n", "argument => ", argument);
+      fetch(`${url}/${argument}?key=${process.env.RAWG_API_KEY}`)
+        .then((response) => response.json())
+        .then((responseData) => {
+          // Log : juste pour avoir toutes les propriétés de l'objet responseData
+          console.log(responseData);
+          displayGame(responseData);
+        });
     };
-  
-    render();
-    backButtonBehavior();
+
+    fetchGame('https://api.rawg.io/api/games', cleanedArgument);
   };
 
-  const backButtonBehavior = () => {
-    const backButtonContainer = document.getElementById('back-to-search-button-container');
-    backButtonContainer.style.display = 'block';
+  const render = () => {
+    pageContent.innerHTML = `
+      <section class="page-detail">
+        <div class="article">
+          <h1 class="title"></h1>
+          <p class="release-date"><span></span></p>
+          <p class="description"></p>
+        </div>
+      </section>
+    `;
 
-    backButtonContainer.addEventListener('click', () => {
-      backButtonContainer.style.display = 'none';
-    });
-  }
+    preparePage();
+  };
+
+  render();
+  backButtonBehavior();
+};
+
+const backButtonBehavior = () => {
+  const backButtonContainer = document.getElementById('back-to-search-button-container');
+  backButtonContainer.style.display = 'block';
+
+  backButtonContainer.addEventListener('click', () => {
+    backButtonContainer.style.display = 'none';
+  });
+}

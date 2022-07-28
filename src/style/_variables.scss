@@ -18,37 +18,37 @@ $mobile-width: 800px;
 
 // h1 style
 $h1-color : rgb(255, 255, 255);
-$h1-size : 3rem;
-$h1-family : 'Oswald';
-$h1-weigth : 600;
+$h1-font-size : 3rem;
+$h1-font-family : 'Oswald';
+$h1-font-weigth : 600;
 @mixin h1-style {
-    font-size : $h1-size;
-    font-family : $h1-family;
-    font-weight : $h1-weigth;
+    font-size : $h1-font-size;
+    font-family : $h1-font-family;
+    font-weight : $h1-font-weigth;
     color : $h1-color;
 }
 
 // h2 style
 $h2-color : rgb(255, 0, 0);
-$h2-size : 2rem;
-$h2-family : 'Oswald';
-$h2-weigth : 500;
+$h2-font-size : 2rem;
+$h2-font-family : 'Oswald';
+$h2-font-weigth : 500;
 @mixin h2-style {
-    font-size : $h2-size;
-    font-family : $h2-family;
-    font-weight : $h2-weigth;
+    font-size : $h2-font-size;
+    font-family : $h2-font-family;
+    font-weight : $h2-font-weigth;
     color : $h2-color;
 }
 
 // p style
 $p1-color : rgb(255, 255, 255);
-$p1-size : 1rem;
-$p1-family : 'VarelaRound';
-$p1-weigth : 400;   
+$p1-font-size : 1rem;
+$p1-font-family : 'VarelaRound';
+$p1-font-weigth : 400;   
 @mixin p-style {
-    font-size : $p1-size;
-    font-family : $p1-family;
-    font-weight : $p1-weigth;
+    font-size : $p1-font-size;
+    font-family : $p1-font-family;
+    font-weight : $p1-font-weigth;
     color : $p1-color;       
 }
 
@@ -62,19 +62,33 @@ $div-vertical-margin: 10px;
 $padding : 15px;
 
 // buttons style
-$background-color : rgb(255, 51, 51);
-$border-radius : 0;
-$color: rgb(0, 0, 0);
-$font-family: 'Oswald';
-$font-size: 1.2rem;
-$width: 100%;
-$border: none;
+$buttons-background-color : rgb(255, 51, 51);
+$buttons-border-radius : 0;
+$buttons-color: rgb(0, 0, 0);
+$buttons-font-family: 'Oswald';
+$buttons-font-size: 1.2rem;
+$buttons-width: 100%;
+$buttons-border: none;
 @mixin buttons-style {
-    background-color : $background-color;
-    border-radius : $border-radius;
-    color: $color;
-    font-family : $font-family;
-    font-size : $font-size;
-    width: $width;
-    border: $border;
+    background-color : $buttons-background-color;
+    border-radius : $buttons-border-radius;
+    color: $buttons-color;
+    font-family : $buttons-font-family;
+    font-size : $buttons-font-size;
+    width: $buttons-width;
+    border: $buttons-border;
+}
+
+// li style
+$li-color : rgb(0, 0, 0);
+$li-font-size : 1rem;
+$li-font-family : 'Oswald';
+$li-font-weigth : 700;
+$li-margin-bottom : 5px;
+@mixin li-style {
+    font-size : $li-font-size;
+    font-family : $li-font-family;
+    font-weight : $li-font-weigth;
+    color : $li-color;
+    margin-bottom: $li-margin-bottom ;
 }
