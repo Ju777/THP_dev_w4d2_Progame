@@ -24,8 +24,8 @@ const PageDetail = (argument) => {
       gameStores(responseData);
       gameTrailer(responseData);
       gameScreenshots(responseData);
-      gameYoutube(responseData);
-      similarGames(responseData);
+      // gameYoutube(responseData); // Fonction non terminée car l'API limite le nombre de requêtes
+      // similarGames(responseData); // Fonction non terminée car l'API limite le nombre de requêtes
     };
 
     const fetchGame = (url, argument) => {
@@ -68,7 +68,8 @@ const backButtonBehavior = () => {
   anime({
     targets : backButtonContainer,
     delay : 500,
-    translateY : '-75vh'
+    translateY : '-75vh',
+    duration : 3000
   });
 
   backButtonContainer.addEventListener('click', () => {

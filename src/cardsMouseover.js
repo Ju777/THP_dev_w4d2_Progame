@@ -47,7 +47,7 @@ const cardsMouseover = (games) => {
                 });
 
                 setTimeout( () => {
-                    console.log('overDisplay');
+                    // console.log('overDisplay');
                     imageCardContainer.innerHTML = `
                                                 <div id ="mouseover-container">
                                                     <ul>

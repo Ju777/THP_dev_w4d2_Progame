@@ -27,7 +27,7 @@ const displayPlatformsLogos = (games, allPlatforms) => {
         // La requete pour les plateformes ne fonctionne pas par la slug mais par l'id. Il nous faut donc l'id correspondant à la plateforme sélectionnée.
         for(let i = 0 ; i < allPlatforms.length ; i ++) {
             if(allPlatforms[i].name === platformName) { 
-                console.log(allPlatforms[i].name);
+                console.log(allPlatforms[i].name, allPlatforms[i].id);
                 PageList('', 9, allPlatforms[i].id);
             }
         }

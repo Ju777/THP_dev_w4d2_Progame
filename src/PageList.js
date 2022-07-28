@@ -6,6 +6,7 @@ export { PageList };
 
 const PageList = (argument = '', listSizeFilter = 9, platformId = '', developer = '', publisher = '', genre = '', tag = '') => {
   window.scrollTo(0, 150);
+  
   const preparePage = () => {
       const cleanedArgument = argument.trim().replace(/\s+/g, '-');
 

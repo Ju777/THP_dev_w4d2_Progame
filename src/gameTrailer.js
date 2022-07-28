@@ -18,7 +18,7 @@ const gameTrailer = (gameData) => {
 
               let noTrailerText = document.createElement('p');
               trailerContainer.appendChild(noTrailerText);
-              noTrailerText.innerHTML = 'Data NA ... sorry ¯\\\_(ツ)_/¯ ! ';              
+              noTrailerText.innerHTML = 'Data not available ... sorry ¯\\\_(ツ)_/¯ ! ';              
             } else {
                     trailerPlayer.innerHTML = `<source src="${responseData[0].data["max"]}" type="video/mp4">
                                   Sorry, your browser doesn't support embedded videos.

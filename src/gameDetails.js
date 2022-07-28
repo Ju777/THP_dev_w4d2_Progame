@@ -48,7 +48,7 @@ const splitDescriptionText = (gameData) => {
     for(let i = 1 ; i < splittedFields.length -2 ; i++) {
         plot += splittedFields[i];
     }
-    if (shortDescription === '') { shortDescription = 'Data NA ... sorry ¯\\\_(ツ)_/¯ !'; }
+    if (shortDescription === '') { shortDescription = 'Data not available ... sorry ¯\\\_(ツ)_/¯ !'; }
     if (plot === '') { plot = 'Data NA ... sorry ¯\\\_(ツ)_/¯ !'; }
     if (gameplay === '') { gameplay = 'Data NA ... sorry ¯\\\_(ツ)_/¯ !'; }
 
@@ -151,12 +151,12 @@ const finalDisplay = (gameData, gameDetailsContainer, descriptionTexts) => {
 
     <div id="youtube-container">
         <h2>YOUTUBE</h2>
-        <p>Accès restreint par l'API on dirait ...</p>
+        <p>Data not available ... sorry ¯\\\_(ツ)_/¯ !</p>
     </div>
 
     <div id="similar-games-container">
         <h2>SIMILAR GAMES</h2>
-        <p>Accès restreint par l'API on dirait ...</p>
+        <p>Data not available ... sorry ¯\\\_(ツ)_/¯ !</p>
     </div>  
     `;
 
@@ -212,7 +212,7 @@ const displayPlatforms = (gameData, allPlatforms) => {
             // La requete pour les plateformes ne fonctionne pas par la slug mais par l'id. Il nous faut donc l'id correspondant à la plateforme sélectionnée.
             for(let i = 0 ; i < allPlatforms.length ; i ++) {
                 if(allPlatforms[i].name === platform) { 
-                    // console.log(allPlatforms[i].name);
+                    console.log(allPlatforms[i].name);
                     PageList('', 9, allPlatforms[i].id);
                 }
             }
